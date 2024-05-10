@@ -132,7 +132,7 @@ def lambda_handler(event, context):
         except Exception as e:
             print(f"Couldn't download model: {e}")
 
-        prediction = onnx_prediction(im_list, model_filename)
+        prediction, probability = onnx_prediction(im_list, model_filename)
 
         print(prediction)
 
@@ -145,7 +145,8 @@ def lambda_handler(event, context):
                 "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
             },
             "body": json.dumps({
-                "Prediction": prediction
+                "Prediction": prediction,
+                "Probability": probability
             }),
         }
 
