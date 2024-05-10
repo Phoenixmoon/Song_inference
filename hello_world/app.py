@@ -79,7 +79,7 @@ def onnx_prediction(
         tmp_dir.cleanup()
 
         if len(batch_votes) == 1:
-            return final_vote
+            return final_vote, probabilities[final_vote]
 
     return batch_votes
 
